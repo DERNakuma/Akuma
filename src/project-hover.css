@@ -1,0 +1,15 @@
+.project-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 0;
+    background: #f13427;
+    transition: height 0.35s ease;
+    z-index: 3;
+}
+
+.project-card:hover::before {
+    height: 100%;
+}

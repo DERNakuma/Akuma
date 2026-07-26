@@ -1,0 +1,55 @@
+/* Section animations */
+section {
+    opacity: 0;
+    transform: translateY(60px);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+section.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Card animations */
+.hobby-card:not(.visible),
+.project-card:not(.visible),
+.dashboard-card:not(.visible),
+.photo-card:not(.visible) {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95);
+}
+
+.hobby-card.visible,
+.project-card.visible,
+.dashboard-card.visible,
+.photo-card.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Ensure hover effects work properly */
+.hobby-card.visible:hover,
+.project-card.visible:hover,
+.dashboard-card.visible:hover {
+    transform: translateY(-15px) scale(1.02) !important;
+    transition: all 0.4s ease !important;
+}
+
+/* Staggered delays */
+.hobby-card:nth-child(1) { transition-delay: 0.1s; }
+.hobby-card:nth-child(2) { transition-delay: 0.2s; }
+.hobby-card:nth-child(3) { transition-delay: 0.3s; }
+.hobby-card:nth-child(4) { transition-delay: 0.4s; }
+
+.project-card:nth-child(1) { transition-delay: 0.1s; }
+.project-card:nth-child(2) { transition-delay: 0.2s; }
+.project-card:nth-child(3) { transition-delay: 0.3s; }
+.project-card:nth-child(4) { transition-delay: 0.4s; }
+.project-card:nth-child(5) { transition-delay: 0.5s; }
+.project-card:nth-child(6) { transition-delay: 0.6s; }
+
+.dashboard-card:nth-child(1) { transition-delay: 0.1s; }
+.dashboard-card:nth-child(2) { transition-delay: 0.2s; }
+.dashboard-card:nth-child(3) { transition-delay: 0.3s; }
+.dashboard-card:nth-child(4) { transition-delay: 0.4s; }

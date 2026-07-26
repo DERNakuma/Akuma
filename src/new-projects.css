@@ -1,0 +1,25 @@
+.project-image.hotel {
+    background: url('/photo/hotel.jpg') center/cover;
+}
+
+.project-image.face-recognition {
+    background: url('/photo/face.jpg') center/cover;
+}
+
+.project-image.student-management {
+    background: url('/photo/room.jpg') center/cover;
+}
+
+.project-image.iot {
+    background: url('/photo/iot.jpg') center/cover;
+}
+
+.project-image.payroll {
+    background: url('/photo/employee.jpg') center/cover;
+    background-color: #11998e;
+}
+
+.project-image.address-book {
+    background: url('/photo/address.jpg') center/cover;
+    background-color: #fc466b;
+}

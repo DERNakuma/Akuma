@@ -1,0 +1,40 @@
+.tech-tags {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.project-card:hover .tech-tags {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.tech-tags span {
+    transform: scale(0.8);
+    transition: all 0.3s ease;
+}
+
+.project-card:hover .tech-tags span {
+    transform: scale(1);
+}
+
+.tech-tags span:nth-child(1) {
+    transition-delay: 0.1s;
+}
+
+.tech-tags span:nth-child(2) {
+    transition-delay: 0.2s;
+}
+
+.tech-tags span:nth-child(3) {
+    transition-delay: 0.3s;
+}
+
+.tech-tags span:hover {
+    transform: scale(1.1) translateY(-2px);
+    background: rgba(255, 107, 53, 0.2);
+    border-color: rgba(255, 107, 53, 0.6);
+    color: #ffffff;
+    box-shadow: 0 4px 15px rgba(255, 107, 53, 0.3);
+    cursor: pointer;
+}
