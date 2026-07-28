@@ -242,6 +242,22 @@ function App() {
             </div>
           </div>
 
+          {/* Resume sub-section */}
+          <div className="about-resume">
+            <div className="about-section-label">Resume</div>
+            <p className="about-resume-tagline">Every line of code, every project, every role — documented.</p>
+            <div className="about-resume-actions">
+              <a href="/resume.pdf" target="_blank" rel="noreferrer" className="about-resume-btn about-resume-btn--view">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+                <span>View Resume</span>
+              </a>
+              <a href="/resume.pdf" download="Bhupender_Singh_Resume.pdf" className="about-resume-btn about-resume-btn--download">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                <span>Download PDF</span>
+              </a>
+            </div>
+          </div>
+
         </div>
       </section>
 
@@ -252,110 +268,112 @@ function App() {
         </div>
         <div className="dashboard-container">
           <div className="dashboard-grid">
-                  <div className="dashboard-card progress-card">
-                    <div className="card-content">
-                      <h3 className="card-title">Skills</h3>
-                      <div className="skills-list">
-                        <div className="skill-item">
-                          <span className="skill-name">Python</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '65%'}}></div>
+                  {[[
+                    { title: 'Skills', dir: 'scroll-down', items: [
+                        'Java','Python','JavaScript','TypeScript',
+                        'Angular','Spring Boot','Spring Security','Hibernate',
+                        'REST APIs','Microservices','HTML','CSS','UI/UX Design',
+                        'Figma','MySQL','MongoDB','Firebase',
+                        'Git','Maven','Postman','Swagger',
+                        'Docker','Eureka','OpenFeign','API Gateway',
+                        'RabbitMQ','OpenCV','MediaPipe','ML','Gen AI',
+                      ], cls: 'skill-tag' },
+                    { title: 'Certifications', dir: '', items: [
+                        'Azure AI Fundamentals','UI/UX Design Certificate',
+                        'Stakeholder Management','UI Design Fundamentals',
+                        'UI/UX Essentials','UI Design Advanced',
+                      ], cls: 'cert-list-item' },
+                    { title: 'Other Skills', dir: 'scroll-down', items: [
+                        'Figma','Framer','FL Studio','DaVinci','Adobe After Effects',
+                        'Clipchamp','Copilot','Unity 3D',
+                        'Figma','Framer','FL Studio','DaVinci','Adobe After Effects',
+                        'Clipchamp','Copilot','Unity 3D',
+                      ], cls: 'other-skill-item' },
+                    { title: 'Projects', dir: '', items: [
+                        'Hotel Management System','Face Recognition System',
+                        'Student Management System','IoT Smart Home',
+                        'Employee Payroll App','Address Book App',
+                      ], cls: 'proj-list-item' },
+                  ]].flat().map(({ title, dir, items, cls }) => {
+                    const itemHeight = 46;
+                    const pxPerSec = 30;
+                    const duration = (items.length * itemHeight) / pxPerSec;
+                    return (
+                    <div key={title} className="dashboard-card"
+                      onMouseEnter={e => {
+                        const el = e.currentTarget.querySelector('.scrollable-card-content');
+                        if (!el) return;
+                        el.classList.add('paused', 'manual');
+                        el.addEventListener('wheel', ev => ev.stopPropagation(), { passive: true });
+                      }}
+                      onMouseLeave={e => {
+                        const el = e.currentTarget.querySelector('.scrollable-card-content');
+                        if (!el) return;
+                        el.classList.remove('paused', 'manual');
+                      }}
+                    >
+                      <div className="card-content">
+                        <h3 className="card-title">{title}</h3>
+                        <div className="scrollable-card-content">
+                          <div
+                            className={`scroll-inner ${dir}`}
+                            style={{ animationDuration: `${duration}s` }}
+                          >
+                            {[...items, ...items].map((item, i) => (
+                              <div key={i} className={cls}>{item}</div>
+                            ))}
                           </div>
-                          <span className="skill-percent">65</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">Java</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '85%'}}></div>
-                          </div>
-                          <span className="skill-percent">85</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">Angular</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '50%'}}></div>
-                          </div>
-                          <span className="skill-percent">50</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">Spring</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '65%'}}></div>
-                          </div>
-                          <span className="skill-percent">65</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">ML</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '45%'}}></div>
-                          </div>
-                          <span className="skill-percent">45</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">MySQL</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '70%'}}></div>
-                          </div>
-                          <span className="skill-percent">70</span>
-                        </div>
-                        <div className="skill-item">
-                          <span className="skill-name">Gen AI</span>
-                          <div className="skill-bar">
-                            <div className="skill-fill" style={{width: '55%'}}></div>
-                          </div>
-                          <span className="skill-percent">55</span>
                         </div>
                       </div>
                     </div>
-                  </div>
-
-                  <div className="dashboard-card analytics-card">
-                    <div className="card-content">
-                      <h3 className="card-title">Certifications</h3>
-                      <div className="cert-item">
-                        <h4 className="cert-name">Microsoft Certified: Azure AI Fundamentals</h4>
-                        <p className="cert-issuer">Microsoft</p>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="dashboard-card performance-card">
-                    <div className="card-content">
-                      <h3 className="card-title">Other Skills</h3>
-                      <div className="other-skills-list">
-                        <div className="other-skill-item">Figma</div>
-                        <div className="other-skill-item">Framer</div>
-                        <div className="other-skill-item">FL Studio</div>
-                        <div className="other-skill-item">DaVinci</div>
-                        <div className="other-skill-item">Adobe After Effects</div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="dashboard-card balance-card">
-                    <div className="card-content">
-                      <h3 className="card-title">Projects</h3>
-                      <div className="balance-display">
-                        <div className="balance-gauge">
-                          <div className="gauge-fill" style={{width: '78%'}}></div>
-                        </div>
-                        <div className="gauge-value">78%</div>
-                      </div>
-                      <div className="balance-info">
-                        <div className="balance-item">
-                          <span className="balance-value">12</span>
-                          <span className="balance-label">Done</span>
-                        </div>
-                        <div className="balance-item">
-                          <span className="balance-value">2</span>
-                          <span className="balance-label">Active</span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                    );
+                  })}
           </div>
         </div>
       </section>
+
+      {/* Certifications — infinite scroll marquee */}
+      {(() => {
+        const certs = [
+          { file: 'azure-ai.pdf',     name: 'Azure AI Fundamentals',    issuer: 'Microsoft' },
+          { file: 'ui-ux-1.pdf',      name: 'UI/UX Design Certificate', issuer: 'Coursera'  },
+          { file: 'stakeholder.pdf',  name: 'Stakeholder Management',   issuer: 'Coursera'  },
+          { file: 'ui-1.pdf',         name: 'UI Design Fundamentals',   issuer: 'Coursera'  },
+          { file: 'ui-ux-ess.pdf',    name: 'UI/UX Essentials',         issuer: 'Coursera'  },
+          { file: 'ui2-advanced.pdf', name: 'UI Design Advanced',       issuer: 'Coursera'  },
+        ];
+        const doubled = [...certs, ...certs];
+        return (
+          <div className="cert-marquee-section">
+            <div className="cert-marquee-header">
+              <div className="about-section-label" style={{marginBottom: 0}}>Certifications</div>
+            </div>
+            <div className="cert-marquee-box">
+              <div className="cert-marquee-outer">
+                <div className="cert-marquee-track">
+                  {doubled.map(({ file, name, issuer }, i) => (
+                    <a key={i} href={`/certificates/${file}`} target="_blank" rel="noreferrer" className="cert-card">
+                      <div className="cert-preview">
+                        <div className="cert-preview-inner">
+                          <iframe src={`/certificates/${file}#toolbar=0&navpanes=0&scrollbar=0`} title={name} className="cert-iframe" tabIndex={-1} />
+                          <div className="cert-overlay">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                            <span>Open</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="cert-info">
+                        <span className="cert-card-name">{name}</span>
+                        <span className="cert-card-issuer">{issuer}</span>
+                      </div>
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      })()}
 
       <section id="projects" className="projects-section">
         <div className="container">
@@ -571,14 +589,22 @@ if (typeof window !== 'undefined') {
       }
     }
 
-    const sections = document.querySelectorAll('section[id]');
+    // Build section offsets from real DOM positions relative to document
+    const sectionIds = ['home', 'about', 'skills', 'projects', 'hobbies', 'photography', 'contact'];
     const sideNavLinks = document.querySelectorAll('.side-nav-link');
-    let current = '';
-    sections.forEach(section => {
-      if (scrollY >= section.offsetTop - 200) {
-        current = section.getAttribute('id');
+    let current = 'home';
+
+    sectionIds.forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      // getBoundingClientRect gives viewport-relative position;
+      // adding scrollY converts it to document-absolute offset
+      const top = el.getBoundingClientRect().top + scrollY;
+      if (scrollY >= top - window.innerHeight * 0.35) {
+        current = id;
       }
     });
+
     sideNavLinks.forEach(link => {
       link.classList.remove('active');
       if (link.getAttribute('href') === `#${current}`) link.classList.add('active');
